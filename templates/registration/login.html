@@ -1,0 +1,18 @@
+{% extends 'basic_generic.html' %}
+{% block title %}
+    Log-in
+{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>Log-in</h1>
+        <p>Please, use the following form to log-in:</p>
+        <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" value="Log-in">Log-in</button>
+        </form>
+        <p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>
+        <a type="submit" class="btn btn-lg btn-block" href="{% url 'registration' %}">Registration</a>
+    </div>
+{% endblock %}

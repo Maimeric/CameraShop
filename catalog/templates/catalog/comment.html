@@ -1,0 +1,17 @@
+<div class="text-center">
+    <h3>Комментарии</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            {{ form }}
+            <input type="submit" value="Submit">
+        </div>
+        <div class="">
+            {% if comment %}
+                {% for com in comment %}
+                    <p>{{ com.sender }}: {{ com.text }}: {{ com.pub_date }} </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </form>
+</div>

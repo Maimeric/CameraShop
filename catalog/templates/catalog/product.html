@@ -1,0 +1,25 @@
+<div class="col-md-4 col-sm-4 col-lg-4 shadow-sm mt-2  border-dark rounded ">
+    <div class="">
+        <a type="button" href="{% url 'camera_page' camera_id=camer.id %}">
+            <img src="{{ camer.imgs.all.first.img }}" alt="..."
+                 class=" rounded-circle shadow img-thumbnail border-dark mt-2 mb-2"
+                 style="width:100%; height:250px  ">
+        </a>
+    </div>
+    <div class="thumbnail">
+        <div class="caption">
+            <h3>{{ camer.title }}</h3>
+            <p>Цена: {{ camer.cost }} BYN</p>
+            <p>Описание товара: {{ camer.short_description }}</p>
+            <p>Количество на складе: {{ camer.get_instance_count }}</p>
+        </div>
+        <a type="button" class="btn btn-lg btn-block btn-outline-primary mb-2"
+           href="{% url 'camera_page' camera_id=camer.id %}">Подробнее
+        </a>
+        {% if user.is_authenticated and not user.is_superuser %}
+            <a type="button" class="btn btn-lg btn-block btn-outline-primary mb-2"
+               href="{% url 'add_to_cart' camera_id=camer.id %}">Добавить в корзину
+            </a>
+        {% endif %}
+    </div>
+</div>

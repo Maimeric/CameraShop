@@ -1,0 +1,46 @@
+{% extends 'catalog_basic_generic.html' %}
+{% block title %}
+    Basket
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mt-2 mx-2">Корзина</h1>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-12  col-sm-12 col-lg-12">
+                <div class="float-left">
+                    <h5>Общая цена: {{ cost }} BYN</h5>
+                </div>
+                <div class="float-right">
+                    <a type="button" class="btn  btn-outline-primary mb-2"
+                       href="{% url 'order_create' %}"> Заказать</a>
+                </div>
+            </div>
+        </div>
+        {% for camera in cameras %}
+            <div class="row">
+                <div class="col-md-2  col-sm-2 col-lg-2">
+                    <div>
+                        <a href="{% url 'camera_page' camera_id=camera.id %}">
+                            <img src="{{ camera.imgs.all.first.img }}" alt="..."
+                                 class="img-thumbnail border-dark mt-2 mb-2">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 co-lg-8">
+                    <div class="caption">
+                        <h3>{{ camera.title }}  </h3>
+                        <p>Цена: {{ camera.cost }} </p>
+                        <p>Описание: {{ camera.short_description }} </p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 co-lg-2">
+                    <a type="button" class="btn  btn-outline-primary mb-2"
+                       href="{% url 'remove_from_cart' camera_id=camera.id %}"> Удалить из корзины</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{#удаление из корзины, оформление заказа#}

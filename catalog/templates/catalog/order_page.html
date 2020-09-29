@@ -1,0 +1,25 @@
+{% extends "catalog_basic_generic.html" %}
+
+{% block title %}Order{% endblock %}
+
+{% block content %}
+    <h1>Checkout</h1>
+    <div class="order-info">
+        <h3>Your order</h3>
+        <ul>
+            {{ total }}
+            {% for item in cart %}
+                <li>
+                    {{ item.cost }} BYN
+
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total: {{ price }} BYN</p>
+    </div>
+    <form action="." method="post" class="order-form">
+        {{ form.as_p }}
+        <p><input type="submit" value="Place order"></p>
+        {% csrf_token %}
+    </form>
+{% endblock %}

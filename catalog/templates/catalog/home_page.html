@@ -1,0 +1,26 @@
+{% extends 'catalog_basic_generic.html' %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1><a> Product </a></h1>
+    </div>
+
+    <div class="container border  w">
+
+        <div class="  ">
+            {% for categor in category %}
+                <a type="button" class="btn  btn-outline-primary mb-2"
+                   href="{% url 'category' category_id=categor.id %}">{{ categor.name }}</a>
+            {% endfor %}
+        </div>
+        <div class="row ">
+            {% if camera.count > 0 %}
+                {% for camer in camera %}
+                    {% include 'catalog/product.html' %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
